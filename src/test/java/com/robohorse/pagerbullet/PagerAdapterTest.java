@@ -10,11 +10,11 @@ import android.widget.FrameLayout;
  * Created by vadim on 28.01.17.
  */
 
-public class TestPagerAdapter extends PagerAdapter {
+public class PagerAdapterTest extends PagerAdapter {
     private final Context context;
     private final int count;
 
-    public TestPagerAdapter(Context context, int count) {
+    public PagerAdapterTest(Context context, int count) {
         this.context = context;
         this.count = count;
     }
