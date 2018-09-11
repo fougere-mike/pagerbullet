@@ -1,5 +1,6 @@
 # PagerBullet
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-PagerBullet-green.svg?style=true)](https://android-arsenal.com/details/1/3749)
+[ ![Download](https://api.bintray.com/packages/mikefougere/maven/pagerbullet/images/download.svg?version=1.1.2) ](https://bintray.com/mikefougere/maven/pagerbullet/1.1.2/link)
 
 <p>Android ViewPager with bottom dots</p>
 
