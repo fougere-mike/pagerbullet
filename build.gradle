@@ -1,33 +1,34 @@
 buildscript {
     repositories {
         jcenter()
+        google()
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
+        classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath 'com.novoda:bintray-release:0.8.1'
     }
 }
 
 allprojects {
     repositories {
         jcenter()
+        google()
     }
 }
 
-apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.android.library'
-
+apply plugin: 'com.novoda.bintray-release'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.2"
 
     defaultConfig {
         minSdkVersion 10
-        targetSdkVersion 25
-        versionCode 1000900
-        versionName "1.0.9"
+        targetSdkVersion 28
+        versionCode 1000903
+        versionName "1.1.2"
     }
     buildTypes {
         release {
@@ -38,46 +39,26 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:support-compat:25.3.1'
+    implementation 'androidx.appcompat:appcompat:1.0.0-rc02'
+    implementation 'androidx.core:core:1.0.0-rc02'
 
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-core:2.0.100-beta'
-    testCompile 'org.robolectric:robolectric:3.1.2'
-    testCompile 'org.robolectric:shadows-multidex:3.0'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:2.0.100-beta'
+    testImplementation 'org.robolectric:robolectric:3.1.2'
+    testImplementation 'org.robolectric:shadows-multidex:3.0'
 }
 
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
-bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
+publish {
+    userOrg = USER_ORG
+    groupId = GROUP
+    artifactId = ARTIFACT_ID
+    publishVersion = VERSION_NAME
+    desc = POM_DESCRIPTION
+    website = POM_URL
+    bintrayUser = properties.getProperty("bintray.user")
+    bintrayKey = properties.getProperty("bintray.apikey")
+    autoPublish = false
 }
-
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'pagerbullet'
-
-    publishedGroupId = 'com.robohorse.pagerbullet'
-    libraryName = 'PagerBullet'
-    artifact = 'pagerbullet'
-
-    libraryDescription = 'Simple Bullet-Indication ViewPager Wrapper'
-
-    siteUrl = 'https://github.com/robohorse/pagerbullet'
-    gitUrl = 'https://github.com/robohorse/pagerbullet.git'
-
-    libraryVersion = '1.0.9'
-
-    developerId = 'robohorse'
-    developerName = 'Vadim'
-    developerEmail = 'robohorsed@gmail.com'
-
-    licenseName = 'The MIT License (MIT)'
-    licenseUrl = 'https://opensource.org/licenses/MIT'
-    allLicenses = ["MIT"]
-}
-
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
